@@ -1,10 +1,12 @@
 package com.barbeariaoliveira.barberproject.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+@Entity
 @Table(name = "usuarios")
 @Getter
 @Setter
@@ -13,23 +15,28 @@ import java.time.LocalDateTime;
 
 public class Usuario {
 
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String telefone;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @Column
     private Boolean ativo;
 
-    @Column
+    @Column(name = "criado_em")
     private LocalDateTime criadoEm;
+
+    @PrePersist
+    public void prePersist() {
+        criadoEm = LocalDateTime.now();
+    }
 
 }
