@@ -98,7 +98,7 @@ Este projeto está sendo desenvolvido para praticar:
 
 ## 👨‍💻 Autor
 
-**Maxwell Oliveira**
+**Maxwell Nascimento**
 
 Estudante de Análise e Desenvolvimento de Sistemas.
 
