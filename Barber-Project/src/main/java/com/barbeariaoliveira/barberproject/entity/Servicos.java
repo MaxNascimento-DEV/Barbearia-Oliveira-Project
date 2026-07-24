@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.servlet.tags.form.TextareaTag;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -31,6 +32,9 @@ public class Servicos {
     private String descricao;
 
     private BigDecimal preco;
+
+    @Column(name = "duracao_minutos")
+    private int duracao;
 
     private Boolean ativo = true;
 

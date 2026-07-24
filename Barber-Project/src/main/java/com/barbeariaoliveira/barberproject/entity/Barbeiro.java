@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "barbeiros")
@@ -36,4 +37,7 @@ public class Barbeiro {
     public void prePersist(){
         criadoEm = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "barbeiro")
+    private List<Agendamentos> agendamentos;
 }
