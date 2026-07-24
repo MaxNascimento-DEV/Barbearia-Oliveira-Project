@@ -19,7 +19,7 @@ public class BarbeiroController {
     public List<Barbeiro> listarBareiros() {
         return barbeiroRepository.findByAtivoTrue();
     }
-    @GetMapping("desativados")
+    @GetMapping("/desativados")
     public List<Barbeiro> listarBarbeirosDesativados()
     {
         return barbeiroRepository.findByAtivoFalse();
