@@ -25,15 +25,6 @@ public class Agendamentos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "usuario_id")
-    private String usuarioID;
-
-    @Column(name = "barbairo_id")
-    private String barbeiroID;
-
-    @Column(name = "servico_id")
-    private String servicoID;
-
     @Column(name = "data_hora_inicio")
     private LocalDate DataInicio;
 
@@ -64,5 +55,6 @@ public class Agendamentos {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "barbeiro_id")
     private Barbeiro barbeiro;
+    
 
 }
