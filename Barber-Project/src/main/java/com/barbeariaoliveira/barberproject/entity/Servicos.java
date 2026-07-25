@@ -6,10 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.servlet.tags.form.TextareaTag;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "servicos")
@@ -29,6 +29,7 @@ public class Servicos {
     @Column(nullable = false)
     private String nome;
 
+    @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
     private BigDecimal preco;
@@ -45,4 +46,7 @@ public class Servicos {
     public void prePersist(){
         criadoEM = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "servico")
+    private List<Agendamentos> agendamentos;
 }

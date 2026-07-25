@@ -6,6 +6,8 @@ import lombok.*;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 @Getter
@@ -47,4 +49,7 @@ public class Usuario {
     public void preUpdate(){
         atualizadoEm = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Agendamentos> agendamentos;
 }

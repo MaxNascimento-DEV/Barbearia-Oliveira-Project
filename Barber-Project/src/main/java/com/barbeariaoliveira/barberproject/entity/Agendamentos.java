@@ -25,12 +25,26 @@ public class Agendamentos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "barbeiro_id")
+    private Barbeiro barbeiro;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false )
+    private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "servico_id", nullable = false)
+    private Servicos servico;
+
+
     @Column(name = "data_hora_inicio")
-    private LocalDate DataInicio;
+    private LocalDateTime DataInicio;
 
     @Column(name = "data_hora_fim")
-    private LocalDate DataFim;
+    private LocalDateTime DataFim;
 
+    @Column(columnDefinition = "TEXT")
     private String observacao;
 
     @Column(name = "criado_em")
@@ -52,9 +66,6 @@ public class Agendamentos {
     @Column(nullable = false)
     private StatusAgendamento status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "barbeiro_id")
-    private Barbeiro barbeiro;
     
 
 }
