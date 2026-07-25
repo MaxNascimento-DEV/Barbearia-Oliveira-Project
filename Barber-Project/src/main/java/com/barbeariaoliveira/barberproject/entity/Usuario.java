@@ -1,6 +1,7 @@
 package com.barbeariaoliveira.barberproject.entity;
 
 
+import com.barbeariaoliveira.barberproject.enums.Perfil;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,6 +33,9 @@ public class Usuario {
 
     @Column
     private Boolean ativo;
+    //Altera para Ativo Ou Inativo assim que inserir o usuario!.
+
+    
 
     @Column(name = "criado_em")
     private LocalDateTime criadoEm;
@@ -39,13 +43,17 @@ public class Usuario {
     @Column(name = "atualizado_em")
     private LocalDateTime atualizadoEm;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Perfil perfil;
+
 
     @PrePersist
     public void prePersist() {
         criadoEm = LocalDateTime.now();
     }
 
-    @PrePersist
+    @PreUpdate
     public void preUpdate(){
         atualizadoEm = LocalDateTime.now();
     }

@@ -57,7 +57,7 @@ public class Agendamentos {
     public void prePersist(){
         criadoEM = LocalDateTime.now();
     }
-    @PrePersist
+    @PreUpdate
     public void preUpdate(){
         atualizadoEM = LocalDateTime.now();
     }
