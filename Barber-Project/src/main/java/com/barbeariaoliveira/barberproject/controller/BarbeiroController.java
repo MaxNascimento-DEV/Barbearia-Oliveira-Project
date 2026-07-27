@@ -2,6 +2,7 @@ package com.barbeariaoliveira.barberproject.controller;
 
 import com.barbeariaoliveira.barberproject.entity.Barbeiro;
 import com.barbeariaoliveira.barberproject.repository.BarbeiroRepository;
+import com.barbeariaoliveira.barberproject.service.BarbeiroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,25 +11,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/barbeiros")
-@RequiredArgsConstructor
+
 
 public class BarbeiroController {
-    private final BarbeiroRepository barbeiroRepository;
+    private final BarbeiroService barbeiroService;
 
-    @GetMapping
-    public List<Barbeiro> listarBareiros() {
-        return barbeiroRepository.findByAtivoTrue();
+    public BarbeiroController(BarbeiroService barbeiroService) {
+        this.barbeiroService = barbeiroService;
     }
+
+    @GetMapping("/ativos")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Barbeiro> listarAtivos() {
+        return barbeiroService.listarAtivos();
+    }
+
     @GetMapping("/desativados")
-    public List<Barbeiro> listarBarbeirosDesativados()
-    {
-        return barbeiroRepository.findByAtivoFalse();
+    @ResponseStatus(HttpStatus.OK)
+    public List<Barbeiro> listarDesativados() {
+        return barbeiroService.listarDesativados();
     }
 
-    @PostMapping
+    @GetMapping("/todos")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Barbeiro> listarTodos() {
+        return barbeiroService.ListarTodos();
+    }
+
+    @GetMapping("/buscar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Barbeiro buscar(@PathVariable Long id) {
+        return barbeiroService.buscar(id);
+    }
+    @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
-    public Barbeiro adicionarBarbeiro(@RequestBody Barbeiro barbeiro)
-    {
-        return barbeiroRepository.save(barbeiro);
+    public Barbeiro cadastrar(@RequestBody Barbeiro barbeiro){
+        return barbeiroService.cadastrar(barbeiro);
     }
 }
