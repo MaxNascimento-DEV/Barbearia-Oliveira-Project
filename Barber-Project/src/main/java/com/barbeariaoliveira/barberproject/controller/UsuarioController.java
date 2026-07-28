@@ -1,31 +1,49 @@
 package com.barbeariaoliveira.barberproject.controller;
 
 
-import org.springframework.web.bind.annotation.*;
+import com.barbeariaoliveira.barberproject.service.UsuarioService;
 import com.barbeariaoliveira.barberproject.entity.Usuario;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.barbeariaoliveira.barberproject.repository.UsuarioRepository;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
-@RequiredArgsConstructor
 
 public class UsuarioController {
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
-    @GetMapping
-    public List<Usuario> ListarUsuarios() {
-        return usuarioRepository.findAll();
-
-    }
-    @PostMapping
-    public Usuario salvar(@RequestBody Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
+    @GetMapping("/todos")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Usuario> listartodos() {
+        return usuarioService.listarTodos();
+    }
+
+    @GetMapping("/buscar/id/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Usuario buscarPorId(@PathVariable long id) {
+        return usuarioService.buscarPorId(id);
+    }
+    @GetMapping("/buscar/nome/{nome}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Usuario> buscarPorNome(@PathVariable String nome){
+        return usuarioService.buscarPorNome(nome);
+
+    }
+    @PostMapping("/cadastrar")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Usuario cadastrar(@RequestBody Usuario usuario){
+        return usuarioService.cadastrar(usuario);
+    }
+
+    @PutMapping("/atualizar")
+    @ResponseStatus(HttpStatus.OK)
+    public Usuario atualizar(@RequestBody Usuario usuario){
+        return usuarioService.atualizar(usuario);
+    }
 }

@@ -45,7 +45,7 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Perfil perfil;
+    private Perfil perfil = Perfil.CLIENTE;
 
 
     @PrePersist

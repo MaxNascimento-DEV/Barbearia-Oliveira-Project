@@ -20,6 +20,12 @@ public class BarbeiroController {
         this.barbeiroService = barbeiroService;
     }
 
+    @GetMapping("/todos")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Barbeiro> listarTodos() {
+        return barbeiroService.ListarTodos();
+    }
+
     @GetMapping("/ativos")
     @ResponseStatus(HttpStatus.OK)
     public List<Barbeiro> listarAtivos() {
@@ -32,17 +38,12 @@ public class BarbeiroController {
         return barbeiroService.listarDesativados();
     }
 
-    @GetMapping("/todos")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Barbeiro> listarTodos() {
-        return barbeiroService.ListarTodos();
-    }
-
     @GetMapping("/buscar/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Barbeiro buscar(@PathVariable Long id) {
+    public Barbeiro buscar(Long id) {
         return barbeiroService.buscar(id);
     }
+
     @PostMapping("/cadastrar")
     @ResponseStatus(HttpStatus.CREATED)
     public Barbeiro cadastrar(@RequestBody Barbeiro barbeiro){

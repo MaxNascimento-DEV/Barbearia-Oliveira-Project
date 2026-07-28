@@ -13,4 +13,6 @@ public interface BarbeiroRepository
     List<Barbeiro> findByAtivoTrue();
 
     List<Barbeiro> findByAtivoFalse();
+
+    boolean existsByNome(String nome);
 }
