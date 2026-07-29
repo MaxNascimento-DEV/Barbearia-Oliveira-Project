@@ -39,6 +39,9 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
     public Usuario atualizar(Usuario usuario){
+        if(usuarioRepository.existsBynome(usuario.getNome()) || usuarioRepository.existsBytelefone(usuario.getTelefone())){
+            throw new RuntimeException("Usuario ja Cadastrado");
+        }
         return usuarioRepository.save(usuario);
     }
 

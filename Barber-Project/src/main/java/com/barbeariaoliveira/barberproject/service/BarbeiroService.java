@@ -31,9 +31,12 @@ public class BarbeiroService {
         return barbeiroRepository.findById(Id).orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
     }
     public Barbeiro cadastrar(Barbeiro barbeiro){
-        if(barbeiroRepository.existsByNome(barbeiro.getNome())){
-            throw new RuntimeException("Barbeiro ja Cadastrado");
-        }
+      if(barbeiro.getNome() == null || barbeiro.getNome().isBlank()) {
+          throw new RuntimeException("Nome do barbeiro não pode ser vazio");
+      }
+      if(barbeiroRepository.existsByNome(barbeiro.getNome())){
+            throw new RuntimeException("Barbeiro já cadastrado");
+          }
         return barbeiroRepository.save(barbeiro);
     }
 

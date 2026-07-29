@@ -37,7 +37,6 @@ public class Agendamentos {
     @JoinColumn(name = "servico_id", nullable = false)
     private Servicos servico;
 
-
     @Column(name = "data_hora_inicio")
     private LocalDateTime DataInicio;
 

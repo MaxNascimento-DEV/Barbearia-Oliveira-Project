@@ -1,9 +1,7 @@
 package com.barbeariaoliveira.barberproject.controller;
 
 import com.barbeariaoliveira.barberproject.entity.Barbeiro;
-import com.barbeariaoliveira.barberproject.repository.BarbeiroRepository;
 import com.barbeariaoliveira.barberproject.service.BarbeiroService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +36,9 @@ public class BarbeiroController {
         return barbeiroService.listarDesativados();
     }
 
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Barbeiro buscar(Long id) {
+    public Barbeiro buscar(@PathVariable Long id) {
         return barbeiroService.buscar(id);
     }
 

@@ -32,6 +32,7 @@ public class Servicos {
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
+
     private BigDecimal preco;
 
     @Column(name = "duracao_minutos")

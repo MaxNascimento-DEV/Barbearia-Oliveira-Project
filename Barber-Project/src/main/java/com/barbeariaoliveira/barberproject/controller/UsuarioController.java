@@ -24,12 +24,13 @@ public class UsuarioController {
         return usuarioService.listarTodos();
     }
 
-    @GetMapping("/buscar/id/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Usuario buscarPorId(@PathVariable long id) {
         return usuarioService.buscarPorId(id);
     }
-    @GetMapping("/buscar/nome/{nome}")
+
+    @GetMapping("/{nome}")
     @ResponseStatus(HttpStatus.OK)
     public List<Usuario> buscarPorNome(@PathVariable String nome){
         return usuarioService.buscarPorNome(nome);
