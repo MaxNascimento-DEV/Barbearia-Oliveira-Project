@@ -35,7 +35,7 @@ public class Agendamentos {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "servico_id", nullable = false)
-    private Servicos servico;
+    private Servicos servicos;
 
     @Column(name = "data_hora_inicio", nullable = false)
     private LocalDateTime dataInicio;
@@ -65,6 +65,6 @@ public class Agendamentos {
     @Column(nullable = false)
     private StatusAgendamento status;
 
-    
+
 
 }
