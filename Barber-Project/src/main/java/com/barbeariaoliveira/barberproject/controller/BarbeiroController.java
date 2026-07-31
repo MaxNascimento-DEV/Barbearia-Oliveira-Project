@@ -47,4 +47,17 @@ public class BarbeiroController {
     public Barbeiro cadastrar(@RequestBody Barbeiro barbeiro){
         return barbeiroService.cadastrar(barbeiro);
     }
+
+    @PatchMapping("/ativar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+        public void ativar(@PathVariable Long id){
+           barbeiroService.ativar(id);
+        }
+
+    @PatchMapping("/desativar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void desativar(@PathVariable Long id){
+        barbeiroService.desativar(id);
+    }
+
 }

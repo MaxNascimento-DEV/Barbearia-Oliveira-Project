@@ -43,21 +43,28 @@ public class ServicosController {
     public Servicos cadastrar(@RequestBody Servicos servicos) {
         return servicosService.cadastrar(servicos);
     }
+
     @PutMapping("/atualizar/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public Servicos atualizar(@PathVariable Long id, @RequestBody Servicos servicos) {
         return servicosService.atualizar(id, servicos);
     }
 
     @PatchMapping("/desativar/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public void desativar(@PathVariable Long id) {
         servicosService.desativar(id);
     }
+
     @PatchMapping("/ativar/{id}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public void ativar(@PathVariable Long id) {
         servicosService.ativar(id);
     }
 
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id) {
+        servicosService.deletar(id);
+    }
 }

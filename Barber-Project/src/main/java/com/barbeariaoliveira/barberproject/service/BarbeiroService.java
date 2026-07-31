@@ -40,6 +40,17 @@ public class BarbeiroService {
         return barbeiroRepository.save(barbeiro);
     }
 
+    public void ativar(Long Id){
+        Barbeiro barbeiro = barbeiroRepository.findById(Id).orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
+        barbeiro.setAtivo(true);
+        barbeiroRepository.save(barbeiro);
+    }
+
+    public void desativar(Long Id){
+        Barbeiro barbeiro = barbeiroRepository.findById(Id).orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
+        barbeiro.setAtivo(false);
+        barbeiroRepository.save(barbeiro);
+    }
 
 
 }

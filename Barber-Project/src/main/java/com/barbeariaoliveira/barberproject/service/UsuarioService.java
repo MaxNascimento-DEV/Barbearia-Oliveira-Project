@@ -45,5 +45,16 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public void ativarUsuario(long id){
+        Usuario usuario = buscarPorId(id);
+        usuario.setAtivo(true);
+        usuarioRepository.save(usuario);
+    }
+
+    public void desativarUsuario(Long id){
+        Usuario usuario = buscarPorId(id);
+        usuario.setAtivo(false);
+        usuarioRepository.save(usuario);
+    }
 
 }

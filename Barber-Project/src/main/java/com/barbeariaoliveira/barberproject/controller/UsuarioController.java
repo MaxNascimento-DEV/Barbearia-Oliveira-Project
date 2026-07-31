@@ -47,4 +47,16 @@ public class UsuarioController {
     public Usuario atualizar(@RequestBody Usuario usuario){
         return usuarioService.atualizar(usuario);
     }
+
+    @PatchMapping("ativar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void ativarUsuario(@PathVariable Long id){
+        usuarioService.ativarUsuario(id);
+    }
+
+    @PatchMapping("desativar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void desativarUsuario(@PathVariable Long id){
+        usuarioService.desativarUsuario(id);
+    }
 }
