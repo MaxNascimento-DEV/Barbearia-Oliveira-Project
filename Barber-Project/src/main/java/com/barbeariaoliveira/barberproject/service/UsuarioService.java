@@ -36,13 +36,10 @@ public class UsuarioService {
         if(usuarioRepository.existsBytelefone(usuario.getTelefone()) || usuarioRepository.existsBynome(usuario.getNome())){
             throw new RuntimeException("Usuario ja Cadastrado");
         }
-        if(usuarioRepository.existsBynome(usuario.getNome())){
-            throw new RuntimeException("Usuario ja Cadastrado");
-        }
         if(usuario.getNome() == null || usuario.getTelefone() == null){
             throw new RuntimeException("Nome e Telefone são obrigatórios");
         }
-        
+
         return usuarioRepository.save(usuario);
     }
     public Usuario atualizar(Usuario usuario){
