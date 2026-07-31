@@ -52,7 +52,7 @@ public class ServicosService {
             throw new RuntimeException("Preço do serviço não pode ser vazio ou menor que zero");
         }
         if(servicos.getDuracao() <= 0){
-            throw new RuntimeException("Duração do serviço não pode ser vazia ou menor que zero")
+            throw new RuntimeException("Duração do serviço não pode ser vazia ou menor que zero");
         }
         if (!servicosRepository.existsById(id)) {
             throw new RuntimeException("Serviço não encontrado");

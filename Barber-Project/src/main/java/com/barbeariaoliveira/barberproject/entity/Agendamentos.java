@@ -26,7 +26,7 @@ public class Agendamentos {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "barbeiro_id")
+    @JoinColumn(name = "barbeiro_id", nullable = false)
     private Barbeiro barbeiro;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,13 +37,13 @@ public class Agendamentos {
     @JoinColumn(name = "servico_id", nullable = false)
     private Servicos servico;
 
-    @Column(name = "data_hora_inicio")
-    private LocalDateTime DataInicio;
+    @Column(name = "data_hora_inicio", nullable = false)
+    private LocalDateTime dataInicio;
 
-    @Column(name = "data_hora_fim")
-    private LocalDateTime DataFim;
+    @Column(name = "data_hora_fim", nullable = false)
+    private LocalDateTime dataFim;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = true)
     private String observacao;
 
     @Column(name = "criado_em")
