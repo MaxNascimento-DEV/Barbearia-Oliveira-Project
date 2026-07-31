@@ -53,10 +53,13 @@ public class AgendamentoService {
         if(agendamentoRepository.existsByBarbeiroIdAndDataInicio(barbeiro.getId(), agendamentos.getDataInicio())){
             throw new RuntimeException("Barbeiro já possui um agendamento nesse horário");
         }
-
-        agendamentos.setStatus(StatusAgendamento.AGENDADO);
+        agendamentos.setUsuario(usuario);
+        agendamentos.setBarbeiro(barbeiro);
+        agendamentos.setServicos(servicos);
 
         agendamentos.setDataFim(agendamentos.getDataInicio().plusMinutes(servicos.getDuracao()));
+
+        agendamentos.setStatus(StatusAgendamento.AGENDADO);
         return agendamentoRepository.save(agendamentos);
     }
 }
