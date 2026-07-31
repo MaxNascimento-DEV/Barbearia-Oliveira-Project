@@ -1,10 +1,16 @@
 package com.barbeariaoliveira.barberproject.service;
 
+import com.barbeariaoliveira.barberproject.entity.Agendamentos;
 import com.barbeariaoliveira.barberproject.repository.AgendamentoRepository;
 import com.barbeariaoliveira.barberproject.repository.BarbeiroRepository;
 import com.barbeariaoliveira.barberproject.repository.ServicosRepository;
 import com.barbeariaoliveira.barberproject.repository.UsuarioRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+
+@Service
 public class AgendamentoService {
     private final AgendamentoRepository agendamentoRepository;
     private final UsuarioRepository usuarioRepository;
@@ -18,6 +24,10 @@ public class AgendamentoService {
         this.servicosRepository = servicosRepository;
     }
 
+    public List<Agendamentos> listarTodos(){
+        return agendamentoRepository.findAll();
+    }
+    
 
 }
 
