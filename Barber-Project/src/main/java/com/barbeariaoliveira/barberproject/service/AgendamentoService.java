@@ -95,10 +95,22 @@ public class AgendamentoService {
             agendamentosExistente.setDataFim(agendamentosAtualizado.getDataInicio().plusMinutes(servicos.getDuracao()));
 
             return agendamentoRepository.save(agendamentosExistente);
-
-
-
     }
+
+    public Agendamentos cancelar(Long id){
+        Agendamentos agendamentos = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+        if(agendamentos.getStatus() == StatusAgendamento.CANCELADO ||
+        agendamentos.getStatus() == StatusAgendamento.FINALIZADO){
+            throw new RuntimeException("Não é possível cancelar um agendamento já cancelado ou finalizado");
+        }
+
+        agendamentos.setStatus(StatusAgendamento.CANCELADO);
+
+        return  agendamentoRepository.save(agendamentos);
+    }
+
+    
 }
 
 
