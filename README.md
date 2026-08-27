@@ -28,9 +28,11 @@ Este projeto está sendo desenvolvido para fins de estudo, aplicando boas práti
 ```
 src
  └── main
-      ├── controller
-      ├── entity
-      ├── repository
+     ├── controller
+     ├── entity
+     ├── enums
+     ├── repository
+     └── service
 
 ```
 
@@ -40,44 +42,57 @@ src
 
 - Cadastro de usuário
 - Listagem de usuários
+-
 
 ### ✅ Barbeiros
 
 - Cadastro de barbeiros
-- Listagem de barbeiros ativos
-- Controle de barbeiros ativos/inativos
-
-### 🚧 Em desenvolvimento
-
-- Serviços
-- Agendamentos
-- Horários disponíveis
 - Atualização de barbeiros
-- Exclusão lógica
-- DTOs
-- Service Layer
-- Tratamento de exceções
-- Integração com WhatsApp
-- Autenticação
+- Listagem de barbeiros ativos
+- Controle de barbeiros ativos/inativos (Soft Delete)
+
+### ✅ Serviços
+
+- Cadastro e atualização de serviços
+- Listagem de todos os serviços e apenas serviços ativos
+- Ativação e desativação de serviços
+- Validações de negócio (nome duplicado, preço inválido, duração)
+
+### ✅ Agendamentos (Núcleo do Sistema)
+
+- Cadastro de agendamentos com validação de conflito de horários
+- Verificação automática de integridade (se barbeiro e serviço estão ativos)
+- Cálculo automático da dataFim baseado na duração do serviço escolhido
+- Atualização de agendamentos (revalidando disponibilidade de agenda)
+- Máquina de estados (Confirmar, Finalizar, Cancelar) protegida por regras de negócio
+- Buscas personalizadas (por Barbeiro, por Usuário e por Status)
+
+### 🚧 Em desenvolvimento (Próximos Passos)
+
+- Implementação de DTOs (Request / Response)
+- Tratamento global de exceções (@ControllerAdvice) e validações avançadas
+- Testes automatizados (JUnit e Mockito)
+- Autenticação e Autorização (Spring Security e JWT)
+- Integração com WhatsApp para notificações automáticas de confirmação
 
 ---
 
 ## 🗄 Banco de Dados
 
-O sistema utiliza **MySQL**.
+O sistema utiliza MySQL.
 
 Principais entidades:
 
-- Usuário
-- Barbeiro
-- Serviço
-- Agendamento
+Usuário
+Barbeiro
+Serviço
+Agendamento
 
 Relacionamentos:
 
-- Um barbeiro pode possuir vários agendamentos.
-- Um cliente pode realizar vários agendamentos.
-- Cada agendamento possui apenas um barbeiro e um serviço.
+Um barbeiro pode possuir vários agendamentos (@ManyToOne).
+Um cliente pode realizar vários agendamentos (@ManyToOne).
+Cada agendamento possui apenas um barbeiro e um serviç
 
 ---
 
