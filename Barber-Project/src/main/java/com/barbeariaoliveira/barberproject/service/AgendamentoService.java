@@ -135,6 +135,11 @@ public class AgendamentoService {
     public List<Agendamentos> buscarPorBarbeiro(Long barbeiroId) {
         return agendamentoRepository.findByBarbeiroId(barbeiroId);
     }
+
+    public List<Agendamentos> buscarPorUsuario(Long usuarioId){
+        return  agendamentoRepository.findByUsuarioId(usuarioId);
+    }
+
 }
 
 
