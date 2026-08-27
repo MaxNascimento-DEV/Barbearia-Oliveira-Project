@@ -17,5 +17,5 @@ public interface AgendamentoRepository
     boolean existsByBarbeiroIdAndDataInicio(
             Long barbeiroId,
             LocalDateTime dataInicio);
-
+    boolean existsByBarbeiroIdAndDataInicioAndIdNot(Long barbeiroId, LocalDateTime dataInicio, Long id);
 }

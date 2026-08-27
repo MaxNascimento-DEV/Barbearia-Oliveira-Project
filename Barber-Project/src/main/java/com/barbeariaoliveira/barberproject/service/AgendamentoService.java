@@ -62,6 +62,43 @@ public class AgendamentoService {
         agendamentos.setStatus(StatusAgendamento.AGENDADO);
         return agendamentoRepository.save(agendamentos);
     }
+
+    public Agendamentos atualizar(Long id, Agendamentos agendamentosAtualizado) {
+        Agendamentos agendamentosExistente = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+
+        if (agendamentosExistente.getStatus() == StatusAgendamento.FINALIZADO ||
+                agendamentosExistente.getStatus() == StatusAgendamento.CANCELADO) {
+            throw new RuntimeException("Não é possível atualizar um agendamento finalizado ou cancelado");
+        }
+        Barbeiro barbeiro = barbeiroRepository.findById(agendamentosAtualizado.getBarbeiro().getId())
+                .orElseThrow(() -> new RuntimeException("Barbeiro não encontrado"));
+        if (!barbeiro.getAtivo()) {
+            throw new RuntimeException("Barbeiro não está ativo");
+        }
+            Servicos servicos = servicosRepository.findById(agendamentosAtualizado.getServicos().getId())
+                    .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
+            if (!servicos.getAtivo()) {
+                throw new RuntimeException("Serviço não está ativo");
+            }
+
+            if (agendamentoRepository.existsByBarbeiroIdAndDataInicioAndIdNot(
+                    barbeiro.getId(),
+                    agendamentosAtualizado.getDataInicio(),
+                    id)) {
+                throw new RuntimeException("Barbeiro já possui um agendamento nesse horário");
+            }
+            agendamentosExistente.setBarbeiro(barbeiro);
+            agendamentosExistente.setServicos(servicos);
+            agendamentosExistente.setDataInicio(agendamentosAtualizado.getDataInicio());
+
+            agendamentosExistente.setDataFim(agendamentosAtualizado.getDataInicio().plusMinutes(servicos.getDuracao()));
+
+            return agendamentoRepository.save(agendamentosExistente);
+
+
+
+    }
 }
 
 
