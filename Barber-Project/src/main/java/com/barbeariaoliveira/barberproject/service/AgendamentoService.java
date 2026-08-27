@@ -110,7 +110,17 @@ public class AgendamentoService {
         return  agendamentoRepository.save(agendamentos);
     }
 
-    
+    public Agendamentos finalizar(Long id){
+        Agendamentos agendamentos = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+        if(agendamentos.getStatus() != StatusAgendamento.CONFIRMADO){
+            throw  new RuntimeException("Apenas agendamentos confirmados podem ser finalizados");
+        }
+        agendamentos.setStatus(StatusAgendamento.FINALIZADO);
+
+        return agendamentoRepository.save(agendamentos);
+    }
+
 }
 
 
