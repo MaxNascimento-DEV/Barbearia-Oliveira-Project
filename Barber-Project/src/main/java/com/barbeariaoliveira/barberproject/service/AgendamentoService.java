@@ -131,6 +131,10 @@ public class AgendamentoService {
 
         return agendamentoRepository.save(agendamentos);
     }
+
+    public List<Agendamentos> buscarPorBarbeiro(Long barbeiroId) {
+        return agendamentoRepository.findByBarbeiroId(barbeiroId);
+    }
 }
 
 
