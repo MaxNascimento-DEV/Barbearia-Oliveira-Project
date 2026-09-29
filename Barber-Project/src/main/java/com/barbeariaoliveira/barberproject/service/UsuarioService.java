@@ -39,9 +39,6 @@ public class UsuarioService {
         if(usuario.getNome() == null || usuario.getTelefone() == null){
             throw new RuntimeException("Nome e Telefone são obrigatórios");
         }
-        if(usuario.getAtivo()== null){
-            usuario.setAtivo(true);
-        }
 
         return usuarioRepository.save(usuario);
     }
