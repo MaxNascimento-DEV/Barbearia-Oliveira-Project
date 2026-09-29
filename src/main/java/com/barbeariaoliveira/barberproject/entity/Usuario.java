@@ -35,8 +35,6 @@ public class Usuario {
     private Boolean ativo;
     //Altera para Ativo Ou Inativo assim que inserir o usuario!.
 
-
-
     @Column(name = "criado_em")
     private LocalDateTime criadoEm;
 
@@ -46,7 +44,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Perfil perfil = Perfil.CLIENTE;
-
 
     @PrePersist
     public void prePersist() {

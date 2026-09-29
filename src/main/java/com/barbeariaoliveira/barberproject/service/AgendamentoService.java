@@ -45,7 +45,7 @@ public class AgendamentoService {
         if(!barbeiro.getAtivo()) {
             throw new RuntimeException("Barbeiro não está ativo");
         }
-        Servicos servicos = servicosRepository.findById(agendamentos.getServicos().getId())
+        Servicos servicos = servicosRepository.findById(agendamentos.getServico().getId())
                 .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
         if(!servicos.getAtivo()){
             throw new RuntimeException("Serviço não está ativo");
@@ -55,7 +55,7 @@ public class AgendamentoService {
         }
         agendamentos.setUsuario(usuario);
         agendamentos.setBarbeiro(barbeiro);
-        agendamentos.setServicos(servicos);
+        agendamentos.setServico(servicos);
 
         agendamentos.setDataFim(agendamentos.getDataInicio().plusMinutes(servicos.getDuracao()));
 
@@ -76,7 +76,7 @@ public class AgendamentoService {
         if (!barbeiro.getAtivo()) {
             throw new RuntimeException("Barbeiro não está ativo");
         }
-            Servicos servicos = servicosRepository.findById(agendamentosAtualizado.getServicos().getId())
+            Servicos servicos = servicosRepository.findById(agendamentosAtualizado.getServico().getId())
                     .orElseThrow(() -> new RuntimeException("Serviço não encontrado"));
             if (!servicos.getAtivo()) {
                 throw new RuntimeException("Serviço não está ativo");
@@ -89,7 +89,7 @@ public class AgendamentoService {
                 throw new RuntimeException("Barbeiro já possui um agendamento nesse horário");
             }
             agendamentosExistente.setBarbeiro(barbeiro);
-            agendamentosExistente.setServicos(servicos);
+            agendamentosExistente.setServico(servicos);
             agendamentosExistente.setDataInicio(agendamentosAtualizado.getDataInicio());
 
             agendamentosExistente.setDataFim(agendamentosAtualizado.getDataInicio().plusMinutes(servicos.getDuracao()));
