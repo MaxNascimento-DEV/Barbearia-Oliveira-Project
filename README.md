@@ -42,7 +42,7 @@ src
 
 - Cadastro de usuário
 - Listagem de usuários
--
+
 
 ### ✅ Barbeiros
 
